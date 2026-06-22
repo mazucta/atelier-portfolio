@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atelier — кейс</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap">
+      <div class="masthead__row">
+        <a href="../index.html" class="brand">Atelier<b>.</b></a>
+        <span class="masthead__meta"><span data-i18n="proj.caseMeta">Кейс · проект</span> №02</span>
+        <div class="masthead__right">
+          <nav class="menu">
+            <a href="../index.html#works" data-i18n="proj.back">← Все работы</a>
+          </nav>
+          <div class="lang" id="lang">
+            <button class="lang__toggle" id="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Сменить язык / Change language">
+              <span class="lang__current" id="lang-current"></span>
+              <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>
+            </button>
+            <ul class="lang__menu" id="lang-menu" role="menu"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="kicker hero__kicker"><span data-i18n="proj.kicker">Кейс</span> №02</p>
+        <h1 class="hero__title" data-i18n-html="proj2.title" style="font-size:clamp(48px,9vw,120px)">
+          <span class="reveal-line"><span>Проект</span></span>
+          <span class="reveal-line indent"><span><em>№02</em></span></span>
+        </h1>
+        <div class="hero__lower">
+          <p class="hero__sub fade" data-i18n="proj.desc">Подробное описание: задача заказчика, что было сделано и какой получился результат.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <div class="work__thumb" style="aspect-ratio:16/9;margin-bottom:32px"><img src="../assets/images/placeholder.svg" alt="Screenshot"></div>
+        <div class="work__thumb" style="aspect-ratio:16/9"><img src="../assets/images/placeholder.svg" alt="Screenshot"></div>
+        <div style="margin-top:48px">
+          <a href="../index.html#contact" class="btn btn--solid" data-i18n="proj.cta">Хочу такой же проект</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap colophon">
+      <span>© Atelier Studio</span>
+      <a href="../index.html" data-i18n="proj.home">На главную</a>
+    </div>
+  </footer>
+
+  <script src="../js/i18n.js"></script>
+</body>
+</html>

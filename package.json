@@ -1,0 +1,10 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Сайт-портфолио для демонстрации проектов заказчикам",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}

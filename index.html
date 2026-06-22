@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATELIER — портфолио студии</title>
+  <meta name="description" content="Студия, которая делает сайты красивыми и полезными — чтобы сайт выполнял рутину за мастеров.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Колонтитул -->
+  <header class="masthead">
+    <div class="wrap">
+      <div class="masthead__row">
+        <a href="#" class="brand">Atelier<b>.</b></a>
+        <span class="masthead__meta" data-i18n="meta.edition">Веб-студия · Издание №01</span>
+        <div class="masthead__right">
+          <nav class="menu">
+            <a href="#works" data-i18n="nav.works">Работы</a>
+            <a href="#manifesto" data-i18n="nav.approach">Подход</a>
+            <a href="#contact" data-i18n="nav.contact">Контакт</a>
+          </nav>
+
+          <!-- Переключатель языков (бургер) -->
+          <div class="lang" id="lang">
+            <button class="lang__toggle" id="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Сменить язык / Change language">
+              <span class="lang__current" id="lang-current"></span>
+              <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>
+            </button>
+            <ul class="lang__menu" id="lang-menu" role="menu"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="kicker hero__kicker fade" data-i18n="hero.kicker">Портфолио · 2026</p>
+
+        <h1 class="hero__title" data-i18n-html="hero.title">
+          <span class="reveal-line"><span>Сайты,</span></span>
+          <span class="reveal-line indent"><span>которые <em>работают</em></span></span>
+          <span class="reveal-line"><span>за вас.</span></span>
+        </h1>
+
+        <div class="hero__lower">
+          <div>
+            <p class="hero__sub fade" data-i18n="hero.sub">Делаем сайты клиентов максимально красивыми и полезными — чтобы сайт брал на себя всю монотонную работу за мастеров, а у них оставалось время на главное.</p>
+            <div class="hero__actions fade">
+              <a href="#works" class="btn btn--solid" data-i18n="btn.viewWork">Смотреть работы</a>
+              <a href="#contact" class="btn btn--text" data-i18n="btn.discuss">Обсудить проект</a>
+            </div>
+          </div>
+          <div class="hero__no fade">№01</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Работы -->
+    <section id="works" class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title" data-i18n-html="works.title">Избранные<br><em>работы</em></h2>
+          <p class="kicker" data-i18n="works.kicker">Индекс проектов</p>
+        </div>
+        <div class="works" id="works-list">
+          <!-- строки добавляются из js/projects-data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Манифест / подход -->
+    <section id="manifesto" class="section manifesto">
+      <div class="wrap">
+        <p class="kicker" data-i18n="manifesto.kicker">Подход</p>
+        <blockquote class="manifesto__quote" data-i18n-html="manifesto.quote">Сайт должен <em>продавать и помогать</em> каждый день — а не быть просто красивой витриной.</blockquote>
+        <div class="manifesto__grid">
+          <div class="stat">
+            <div class="stat__n">50+</div>
+            <div class="stat__l" data-i18n="stat1.label">проектов сдано — от идеи до запуска</div>
+          </div>
+          <div class="stat">
+            <div class="stat__n">24/7</div>
+            <div class="stat__l" data-i18n="stat2.label">сайт берёт запись, ответы и заявки на себя</div>
+          </div>
+          <div class="stat">
+            <div class="stat__n">100%</div>
+            <div class="stat__l" data-i18n="stat3.label">внимания к деталям дизайна и пользе</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакт -->
+    <section id="contact" class="section contact">
+      <div class="wrap">
+        <p class="kicker" data-i18n="contact.kicker">Свяжитесь</p>
+        <div style="margin-top:24px">
+          <a href="mailto:hello@atelier.studio" class="contact__big" data-i18n="contact.big">Начнём проект</a>
+        </div>
+        <div class="contact__row">
+          <a href="mailto:hello@atelier.studio">hello@atelier.studio</a>
+          <a href="#">Telegram</a>
+          <a href="#">Behance</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Колофон -->
+  <footer>
+    <div class="wrap colophon">
+      <span>© <span id="year"></span> Atelier Studio</span>
+      <span data-i18n="footer.made">Сделано с вниманием к деталям</span>
+      <span data-i18n="footer.edition">Издание №01 · Бумага &amp; чернила</span>
+    </div>
+  </footer>
+
+  <script src="js/projects-data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/i18n.js"></script>
+</body>
+</html>

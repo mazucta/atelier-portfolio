@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450">
+  <rect width="600" height="450" fill="#eae1d0"/>
+  <line x1="0" y1="0" x2="600" y2="450" stroke="#cdc2ad" stroke-width="1"/>
+  <line x1="600" y1="0" x2="0" y2="450" stroke="#cdc2ad" stroke-width="1"/>
+  <circle cx="300" cy="225" r="46" fill="#f3ede1" stroke="#1a1612" stroke-width="1.5"/>
+  <circle cx="300" cy="225" r="9" fill="#e8442a"/>
+  <text x="300" y="412" font-family="Georgia, serif" font-style="italic" font-size="20"
+        fill="#6a6053" text-anchor="middle">превью проекта</text>
+</svg>
