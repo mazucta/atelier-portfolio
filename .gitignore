@@ -13,3 +13,6 @@ npm-debug.log*
 # Редакторы
 .vscode/
 .idea/
+
+# graphify — генерируемый граф знаний (регенерируется из исходников)
+graphify-out/

@@ -34,27 +34,6 @@ function renderWorks(lang) {
       "</a>"
     );
   }).join("");
-
-  // Появление строк при скролле
-  const rows = list.querySelectorAll(".work");
-  if (!("IntersectionObserver" in window)) {
-    rows.forEach(function (r) { r.classList.add("in"); });
-    return;
-  }
-  const io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) {
-        e.target.style.transitionDelay = (e.target.dataset.delay || "0") + "ms";
-        e.target.classList.add("in");
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  rows.forEach(function (r, i) {
-    r.dataset.delay = (i % 3) * 90;
-    io.observe(r);
-  });
 }
 
 // Доступно для i18n.js (перерисовка при смене языка)

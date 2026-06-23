@@ -18,6 +18,9 @@
 
   --maxw: 1280px;
   --gut: clamp(20px, 5vw, 72px);
+
+  --ease-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -93,7 +96,6 @@ img { display: block; max-width: 100%; }
    ============================================================ */
 @keyframes rise   { from { transform: translateY(110%); } to { transform: translateY(0); } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
-@keyframes drawX  { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 .reveal-line { display: block; overflow: hidden; }
 .reveal-line > span {
@@ -161,6 +163,16 @@ img { display: block; max-width: 100%; }
   position: relative;
   padding: clamp(48px, 9vw, 110px) 0 clamp(56px, 8vw, 96px);
 }
+/* Сакура-созвездие — фиксированный слой за контентом (лепестки падают по экрану) */
+.hero__constellation {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+.hero > .wrap { position: relative; z-index: 1; }
 .hero__kicker { margin-bottom: clamp(20px, 4vw, 40px); }
 .hero__kicker.fade { animation-delay: 0.15s; }
 
@@ -177,7 +189,20 @@ img { display: block; max-width: 100%; }
   font-style: italic;
   font-weight: 500;
   color: var(--vermilion);
+  position: relative;
 }
+/* Чернильное подчёркивание дорисовывается после посадки заголовка */
+.hero__title em::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0.04em;
+  height: 0.055em;
+  background: var(--vermilion);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: ink-draw 0.7s var(--ease-expo) 1.05s forwards;
+}
+@keyframes ink-draw { to { transform: scaleX(1); } }
 .hero__title .reveal-line:nth-child(1) > span { animation-delay: 0.20s; }
 .hero__title .reveal-line:nth-child(2) > span { animation-delay: 0.34s; }
 .hero__title .reveal-line:nth-child(3) > span { animation-delay: 0.48s; }
@@ -232,6 +257,7 @@ img { display: block; max-width: 100%; }
   border-radius: 999px;
 }
 .btn--solid:hover { background: var(--vermilion); transform: translateY(-2px); }
+.btn:active { transform: scale(0.97); }
 .btn--text { color: var(--ink); padding: 8px 0; border-bottom: 2px solid var(--vermilion); border-radius: 0; }
 .btn--text:hover { color: var(--vermilion-deep); }
 
@@ -268,11 +294,8 @@ img { display: block; max-width: 100%; }
   padding: clamp(28px, 4vw, 48px) 0;
   border-bottom: 1px solid var(--line);
   position: relative;
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1), background 0.3s;
+  transition: background 0.3s var(--ease-expo);
 }
-.work.in { opacity: 1; transform: none; }
 .work:hover { background: linear-gradient(90deg, rgba(232,68,42,0.06), rgba(232,68,42,0)); }
 
 .work__no {
@@ -534,7 +557,61 @@ img { display: block; max-width: 100%; }
   .hero__title .indent { padding-left: 0; }
 }
 
+/* ============================================================
+   Scroll-driven motion — прогрессивное улучшение.
+   Контент виден по умолчанию; прячем и анимируем только там,
+   где браузер реально поддерживает scroll/view-таймлайны
+   (тогда reveal гарантированно отыграет — не останется пустым).
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Параллакс гиганта-заголовка — редакторская глубина */
+  @supports (animation-timeline: scroll()) {
+    .hero__title {
+      animation: hero-drift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 85vh;
+    }
+    @keyframes hero-drift { to { transform: translateY(52px); opacity: 0.8; } }
+  }
+
+  @supports (animation-timeline: view()) {
+    /* Строки проектов всплывают по мере входа в кадр */
+    .work {
+      animation: work-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 42%;
+    }
+    @keyframes work-rise {
+      from { opacity: 0; transform: translateY(46px); }
+      to   { opacity: 1; transform: none; }
+    }
+    /* Превью «проявляется» из-под маски (clip-path wipe снизу вверх) */
+    .work__thumb img {
+      animation: thumb-wipe linear both;
+      animation-timeline: view();
+      animation-range: entry 8% entry 60%;
+    }
+    @keyframes thumb-wipe {
+      from { clip-path: inset(0 0 100% 0); }
+      to   { clip-path: inset(0 0 0 0); }
+    }
+    /* Цитата-манифест въезжает wipe’ом слева направо */
+    .manifesto__quote {
+      animation: quote-wipe linear both;
+      animation-timeline: view();
+      animation-range: entry 12% cover 40%;
+    }
+    @keyframes quote-wipe {
+      from { clip-path: inset(0 100% 0 0); opacity: 0.35; }
+      to   { clip-path: inset(0 0 0 0); opacity: 1; }
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal-line > span, .fade, .work { opacity: 1 !important; transform: none !important; }
+  .hero__title em::after { transform: scaleX(1) !important; }
+  .work__thumb img, .manifesto__quote { clip-path: none !important; }
 }
